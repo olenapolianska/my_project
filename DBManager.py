@@ -7,10 +7,12 @@ class DBManager:
     def create_tables(self):
         cursor = self.connection
         cursor.execute("""
-        CREATE TABLE IF NOT EXISTS films (
+        CREATE TABLE IF NOT EXISTS compositions(
             id INT PRIMARY KEY,
+            image JPG,
             title VARCHAR (255),
-            description TEXT);""")
+            description TEXT,
+            vud TEXT);""")
         cursor.execute("""
         CREATE TABLE IF NOT EXISTS topics (
             id INT PRIMARY KEY,
@@ -19,9 +21,19 @@ class DBManager:
         cursor.execute("""
         CREATE TABLE IF NOT EXISTS Actors (
             id INT PRIMARY KEY,
-            film_id INT,
-            content TEXT,);
+            name TEXT);
         """)
         self.connection.commit()
 
-#потрібно створити бд для фільмів сюжету і акторів
+    def add_compositions(self, id, image, title, description, vud):
+        cursor = self.connection.cursor()
+        cursor.execute(f"INSERT INTO compositions(id, image, title, description, vud) VALUES (?, ?, ?)", [id, image, title, description, vud])
+        self.connection.commit()
+        cursor.close()
+
+    def get_composition(self):
+        cursor = self.connection.cursor()
+        cursor.execute("SELECT * FROM compositions")
+        res = cursor.fetchall()
+        cursor.close()
+        return res
