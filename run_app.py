@@ -3,10 +3,13 @@ from flask import *
 from DBManager import DBManager
 
 app = Flask("Films")
+db_name = "MY_PROJECT1.db"
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    db_manager = DBManager(db_name)
+    compositions = db_manager.get_compositions()
+    return render_template("index.html", compositions=compositions)
 
 @app.route("/films")
 def films():

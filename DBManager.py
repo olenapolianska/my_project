@@ -27,11 +27,11 @@ class DBManager:
 
     def add_compositions(self, id, image, title, description, vud):
         cursor = self.connection.cursor()
-        cursor.execute(f"INSERT INTO compositions(id, image, title, description, vud) VALUES (?, ?, ?)", [id, image, title, description, vud])
+        cursor.execute(f"INSERT INTO compositions(id, image, title, description, vud) VALUES (?, ?, ?, ?, ?)", [id, image, title, description, vud])
         self.connection.commit()
         cursor.close()
 
-    def get_composition(self):
+    def get_compositions(self):
         cursor = self.connection.cursor()
         cursor.execute("SELECT * FROM compositions")
         res = cursor.fetchall()

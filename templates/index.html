@@ -3,10 +3,16 @@
 {% block content %}
 
 
-
-<div>
-    <h1>ТОП-10 Різдвяних фільмів</h1>
-</div>
+{% for composition in compositions %}
+    <h1>Топ-10 фільмів за версією IMDb</h1>
+<div class="container p-5 my-5 border">
+    <div class="container mt-3">
+        <img src="втеча з шоушенка.jpg" class="float-start">
+    </div>
+        <h3>{{ composition[2] }}</h3>
+        <p>{{ composition[3] }}</p>
+    </div>
+{% endfor %}
 {% endblock %}
 
 
