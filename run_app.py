@@ -3,7 +3,7 @@ from flask import *
 from DBManager import DBManager
 
 app = Flask("Films")
-db_name = "MY_PROJECT1.db"
+db_name = "MY_PROJECT.db"
 
 @app.route("/")
 def index():

@@ -37,3 +37,20 @@ class DBManager:
         res = cursor.fetchall()
         cursor.close()
         return res
+    def add_topics(self, id, film_id, content):
+        cursor = self.connection.cursor()
+        cursor.execute(f"INSERT INTO topics(id, film_id, content) VALUES (?, ?, ?)", [id, film_id, content])
+        self.connection.commit()
+        cursor.close()
+
+    def get_topics(self):
+        cursor = self.connection.cursor()
+        cursor.execute("SELECT * FROM topics")
+        res = cursor.fetchall()
+        cursor.close()
+        return res
+    def add_actors(self, id, name):
+        cursor = self.connection.cursor()
+        cursor.execute(f"INSERT INTO actors(id, name) VALUES (?, ?)", [id, name])
+        self.connection.commit()
+        cursor.close()

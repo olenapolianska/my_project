@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+<h1>Топ-10 фільмів за версією IMDb</h1>
 
 {% for composition in compositions %}
-    <h1>Топ-10 фільмів за версією IMDb</h1>
+
 <div class="container p-5 my-5 border">
-    <div class="container mt-3">
-        <img src="втеча з шоушенка.jpg" class="float-start">
-    </div>
+        <h2>{{ composition[0] }}</h2>
+        <img src="{{ url_for('static', filename= composition[1]) }}" class="float-start" width="150" height="230" >
         <h3>{{ composition[2] }}</h3>
-        <p>{{ composition[3] }}</p>
+        <h5 class=text-secondary">{{ composition[3] }}</h5>
+        <a >Сюжет</a>
     </div>
 {% endfor %}
 {% endblock %}
