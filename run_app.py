@@ -13,11 +13,16 @@ def index():
 
 @app.route("/films")
 def films():
-    return render_template("films.html")
+    db_manager = DBManager(db_name)
+    compositions = db_manager.get_compositions_by_vud("Фільм")
+    return render_template("films.html", compositions=compositions)
 
 @app.route("/series")
 def series():
-    return render_template("series.html")
+    db_manager = DBManager(db_name)
+    compositions = db_manager.get_compositions_by_vud("Серіал")
+    return render_template("series.html", compositions=compositions)
+
 
 @app.route("/cartoon_series")
 def cartoon_series():

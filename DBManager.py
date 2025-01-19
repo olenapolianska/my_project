@@ -49,6 +49,13 @@ class DBManager:
         res = cursor.fetchall()
         cursor.close()
         return res
+
+    def get_compositions_by_vud(self, vud):
+        cursor = self.connection.cursor()
+        cursor.execute(f"SELECT * FROM compositions WHERE vud = \"{vud}\"")
+        res = cursor.fetchall()
+        cursor.close()
+        return res
     def add_topics(self, id, composition_id, photo,  year, country, age, genre, actors, producer, content):
         cursor = self.connection.cursor()
         cursor.execute(f"INSERT INTO topics(id, composition_id, photo, year, country, age, genre, actors, producer, content) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [id, composition_id, photo, year, country, age, genre, actors, producer, content])
