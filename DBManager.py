@@ -16,12 +16,24 @@ class DBManager:
         cursor.execute("""
         CREATE TABLE IF NOT EXISTS topics (
             id INT PRIMARY KEY,
-            film_id INT,
+            composition_id INT,
+            photo JPG,
+            year INT,
+            country TEXT,
+            age INT,
+            genre TEXT,
+            actors TEXT,
+            producer TEXT
             content TEXT);""")
         cursor.execute("""
         CREATE TABLE IF NOT EXISTS Actors (
             id INT PRIMARY KEY,
-            name TEXT);
+            photo JPG,
+            name TEXT,
+            full_name TEXT,
+            birthday INT,
+            country TEXT,
+            films TEXT);
         """)
         self.connection.commit()
 
@@ -37,9 +49,9 @@ class DBManager:
         res = cursor.fetchall()
         cursor.close()
         return res
-    def add_topics(self, id, film_id, content):
+    def add_topics(self, id, composition_id, photo,  year, country, age, genre, actors, producer, content):
         cursor = self.connection.cursor()
-        cursor.execute(f"INSERT INTO topics(id, film_id, content) VALUES (?, ?, ?)", [id, film_id, content])
+        cursor.execute(f"INSERT INTO topics(id, composition_id, photo, year, country, age, genre, actors, producer, content) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [id, composition_id, photo, year, country, age, genre, actors, producer, content])
         self.connection.commit()
         cursor.close()
 
@@ -49,8 +61,8 @@ class DBManager:
         res = cursor.fetchall()
         cursor.close()
         return res
-    def add_actors(self, id, name):
+    def add_actors(self, id, photo, name, full_name, birthday, country, films ):
         cursor = self.connection.cursor()
-        cursor.execute(f"INSERT INTO actors(id, name) VALUES (?, ?)", [id, name])
+        cursor.execute(f"INSERT INTO actors(id, photo, name, full_name, birthday, country, films ) VALUES (?, ?, ?, ?, ?, ?, ?)", [id, photo, name, full_name, birthday, country, films ])
         self.connection.commit()
         cursor.close()
