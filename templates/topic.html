@@ -1,7 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1></h1>
+
+
+    <h2>{{topic[3]}}</h2>
+    <img src="{{ url_for('static', filename= topic[3]) }}" width="150" height="230">
+
+
 
 
 {% endblock %}

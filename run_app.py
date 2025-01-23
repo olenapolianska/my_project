@@ -3,13 +3,21 @@ from flask import *
 from DBManager import DBManager
 
 app = Flask("Films")
+app.secret_key = "2503"
 db_name = "MY_PROJECT.db"
 
 @app.route("/")
-def index():
+def main_page():
     db_manager = DBManager(db_name)
-    compositions = db_manager.get_compositions()
-    return render_template("index.html", compositions=compositions)
+    compositions = db_manager.get_compositions_by_vud("Фільм")
+    return render_template("main_page.html", compositions=compositions)
+
+@app.route("/composition/<int:composition_id>")
+def get_topic(composition_id):
+    db_manager = DBManager(db_name)
+    topic = db_manager.get_topic(composition_id)
+    return render_template("topic.html", topic=topic, composition_id=composition_id)
+
 
 @app.route("/films")
 def films():
@@ -26,15 +34,16 @@ def series():
 
 @app.route("/cartoon_series")
 def cartoon_series():
+
     return render_template("cartoon_series.html")
 
 @app.route("/cartoons")
 def cartoons():
-    return render_template("cartoons.html")
+    db_manager = DBManager(db_name)
+    compositions = db_manager.get_compositions_by_vud("Мультфільм")
+    return render_template("cartoons.html", compositions=compositions)
 
-@app.route("/main_page")
-def main_page():
-    return render_template("main_page.html")
+
 
 
 app.run()

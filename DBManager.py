@@ -62,9 +62,9 @@ class DBManager:
         self.connection.commit()
         cursor.close()
 
-    def get_topics(self):
+    def get_topic(self, composition_id):
         cursor = self.connection.cursor()
-        cursor.execute("SELECT * FROM topics")
+        cursor.execute("SELECT * FROM topics WHERE composition_id = ?", [composition_id])
         res = cursor.fetchall()
         cursor.close()
         return res
