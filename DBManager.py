@@ -34,6 +34,14 @@ class DBManager:
             birthday INT,
             country TEXT,
             films TEXT);
+        CREATE TABLE IF NOT EXISTS film_actors (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            film_id INT,
+            actor_id INT,
+            FOREIGN KEY (film_id) REFERENCES compositions(id),
+            FOREIGN KEY (actor_id) REFERENCES actors(id)
+        );
+
         """)
         self.connection.commit()
 
@@ -73,3 +81,26 @@ class DBManager:
         cursor.execute(f"INSERT INTO actors(id, photo, name, full_name, birthday, country, films ) VALUES (?, ?, ?, ?, ?, ?, ?)", [id, photo, name, full_name, birthday, country, films ])
         self.connection.commit()
         cursor.close()
+
+    def add_actor_to_film(self, film_id, actor_id):
+        cursor = self.connection.cursor()
+        cursor.execute("INSERT INTO film_actors(film_id, actor_id) VALUES (?, ?)", [film_id, actor_id])
+        self.connection.commit()
+        cursor.close()
+
+    def get_actors_by_film(self, film_id):
+        cursor = self.connection.cursor()
+        cursor.execute("""
+            SELECT actors.id, actors.name, actors.full_name, actors.photo 
+            FROM film_actors
+            JOIN actors ON film_actors.actor_id = actors.id
+            WHERE film_actors.film_id = ?
+        """, [film_id])
+        res = cursor.fetchall()
+        cursor.close()
+        return res
+
+
+
+
+
