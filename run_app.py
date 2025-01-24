@@ -15,9 +15,19 @@ def main_page():
 @app.route("/composition/<int:composition_id>")
 def get_topic(composition_id):
     db_manager = DBManager(db_name)
-    topic = db_manager.get_topic(composition_id)
-    return render_template("topic.html", topic=topic, composition_id=composition_id)
+    topics = db_manager.get_topics(composition_id)
+    session["topics"] = topics
+    session["composition_index"] = 0
 
+    return redirect(url_for("show_topic", composition_id=composition_id))
+
+@app.route("/composition/<int:composition_id>/topic")
+def show_topic(composition_id):
+    nomer = session["composition_index"]
+    t = session["topics"][nomer]
+    db_manager = DBManager(db_name)
+
+    return render_template("topic.html", topic=t, composition_id=composition_id)
 
 @app.route("/films")
 def films():
@@ -34,8 +44,9 @@ def series():
 
 @app.route("/cartoon_series")
 def cartoon_series():
-
-    return render_template("cartoon_series.html")
+    db_manager = DBManager(db_name)
+    compositions = db_manager.get_compositions_by_vud("Мультсеріал")
+    return render_template("cartoon_series.html", compositions=compositions)
 
 @app.route("/cartoons")
 def cartoons():
