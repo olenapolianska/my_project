@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% for actor in actors %}
+
+    <img src="{{ url_for('static', filename=actor[3]) }}" width="350" height="430">
+    <p>Ім'я: {{ actor[2] }}</p>
+
+{% endfor %}
+{% endblock %}

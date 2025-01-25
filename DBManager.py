@@ -33,16 +33,15 @@ class DBManager:
             full_name TEXT,
             birthday INT,
             country TEXT,
-            films TEXT);
+            films TEXT);""")
+        cursor.execute("""
         CREATE TABLE IF NOT EXISTS film_actors (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             film_id INT,
             actor_id INT,
             FOREIGN KEY (film_id) REFERENCES compositions(id),
             FOREIGN KEY (actor_id) REFERENCES actors(id)
-        );
-
-        """)
+        );""")
         self.connection.commit()
 
     def add_compositions(self, id, image, title, description, vud):

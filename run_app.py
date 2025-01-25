@@ -29,6 +29,14 @@ def show_topic(composition_id):
 
     return render_template("topic.html", topic=t, composition_id=composition_id)
 
+
+@app.route("/composition/<int:composition_id>/actors")
+def get_actors(composition_id):
+    db_manager = DBManager(db_name)
+    actors = db_manager.get_actors_by_film(composition_id)
+    return render_template("actors.html", actors=actors, composition_id=composition_id)
+
+
 @app.route("/films")
 def films():
     db_manager = DBManager(db_name)
@@ -47,6 +55,7 @@ def cartoon_series():
     db_manager = DBManager(db_name)
     compositions = db_manager.get_compositions_by_vud("Мультсеріал")
     return render_template("cartoon_series.html", compositions=compositions)
+
 
 @app.route("/cartoons")
 def cartoons():

@@ -10,7 +10,7 @@
     <h6>{{topic[4]}}</h6>
     <h6>{{topic[5]}}</h6>
     <h6>{{topic[6]}}</h6>
-    <a href="/">{{topic[7]}}</a>
+    <a href="{{ url_for('get_actors', composition_id=composition_id) }}">{{topic[7]}}</a>
     <h6>{{topic[8]}}</h6>
     <h6>{{topic[9]}}</h6>
 {% endblock %}
