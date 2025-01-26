@@ -1,17 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="container">
+    <h1 class="text-center my-4 font-weight-bold">Топ-10 фільмів за рейтингом IMDb</h1>
 
-<p>фільми</p>
+    <div class="list-group">
+        {% for composition in compositions %}
+        <div class="list-group-item d-flex align-items-center p-4 mb-3 border shadow-sm rounded">
+            <h2>{{ loop.index}}</h2>
+            <!-- Зображення фільму -->
+            <img src="{{ url_for('static', filename= composition[1]) }}" class="img-fluid rounded shadow" alt="{{ composition[2] }}" width="150" height="225">
 
-{% for composition in compositions %}
-
-<div class="container p-5 my-5 border">
-        <h2>{{ composition[0] }}</h2>
-        <img src="{{ url_for('static', filename= composition[1]) }}" class="float-start" width="150" height="230" >
-        <h3>{{ composition[2] }}</h3>
-        <h5 class=text-secondary">{{ composition[3] }}</h5>
-        <a href="" >детальніше про фільм</a>
+            <!-- Опис фільму -->
+            <div class="ml-4">
+                <h3 class="text-dark font-weight-bold">{{ composition[2] }}</h3>
+                <h5 class="text-muted">{{ composition[3] }}</h5>
+                <p class="text-muted">Рейтинг IMDb: <strong>{{ composition[4] }}</strong></p> <!-- Якщо рейтинг є, додаємо його -->
+                <a href="/composition/{{composition[0]}}" class="btn btn-outline-primary mt-3">Детальніше про фільм</a>
+            </div>
+        </div>
+        {% endfor %}
     </div>
-{% endfor %}
+</div>
 {% endblock %}

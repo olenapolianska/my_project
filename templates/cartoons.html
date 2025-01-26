@@ -2,16 +2,16 @@
 
 {% block content %}
 
-<p>Мультфільми</p>
+<h1>Топ-10 мультфільмів за рейтингом IMDb</h1>
 
 {% for composition in compositions %}
 
 <div class="container p-5 my-5 border">
-        <h2>{{ composition[0] }}</h2>
+        <h2>{{ loop.index}}</h2>
         <img src="{{ url_for('static', filename= composition[1]) }}" class="float-start" width="150" height="230" >
         <h3>{{ composition[2] }}</h3>
         <h5 class=text-secondary">{{ composition[3] }}</h5>
-        <a >детальніше про мультфільм</a>
+        <a href="/composition/{{composition[0]}}">детальніше про мультфільм</a>
     </div>
 {% endfor %}
 {% endblock %}

@@ -90,7 +90,7 @@ class DBManager:
     def get_actors_by_film(self, film_id):
         cursor = self.connection.cursor()
         cursor.execute("""
-            SELECT actors.id, actors.name, actors.full_name, actors.photo 
+            SELECT actors.id, actors.name, actors.full_name, actors.photo, actors.birthday, actors.country, actors.films 
             FROM film_actors
             JOIN actors ON film_actors.actor_id = actors.id
             WHERE film_actors.film_id = ?

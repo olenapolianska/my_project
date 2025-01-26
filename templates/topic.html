@@ -1,16 +1,41 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="container my-5">
 
+    <h1 class="text-center font-weight-bold">{{ topic[10] }}</h1>
 
+    <!-- Контейнер для інформації про фільм -->
+    <div class="row">
+        <!-- Зображення фільму -->
+        <div class="col-md-4 text-center">
+            <img src="{{ url_for('static', filename= topic[2]) }}" class="img-fluid rounded shadow" alt="{{ topic[2] }}" width="300" height="400">
+        </div>
 
-    <img src="{{ url_for('static', filename= topic[2]) }}" width="350" height="430">
+        <!-- Детальна інформація про фільм -->
+        <div class="col-md-8">
+            <h5 class="text-muted mt-3">Рік виходу: <strong>{{ topic[3] }}</strong></h5>
+            <h5 class="text-muted">Країна: <strong>{{ topic[4] }}</strong></h5>
+            <h5 class="text-muted">Вікове обмеження: <strong>{{ topic[5] }}</strong></h5>
+            <h5 class="text-muted">Жанри: <strong>{{ topic[6] }}</strong></h5>
 
-    <h6>Рік:{{topic[3]}}</h6>
-    <h6>{{topic[4]}}</h6>
-    <h6>{{topic[5]}}</h6>
-    <h6>{{topic[6]}}</h6>
-    <a href="{{ url_for('get_actors', composition_id=composition_id) }}">{{topic[7]}}</a>
-    <h6>{{topic[8]}}</h6>
-    <h6>{{topic[9]}}</h6>
+            <!-- Актори -->
+            <h5 class="text-muted">Актори: <strong><a href="{{ url_for('get_actors', composition_id=composition_id) }}" class="text-decoration-none text-primary">{{ topic[7] }}</a></strong></h5>
+
+            <!-- Режисер -->
+            <h5 class="text-muted">Режисер: <strong>{{ topic[8] }}</strong></h5>
+        </div>
+    </div>
+
+    <!-- Опис сюжету -->
+    <div class="mt-4">
+        <h3 class="font-weight-bold">Короткий сюжет:</h3>
+        <p class="text-justify">{{ topic[9] }}</p>
+    </div>
+
+    <!-- Кнопка назад на головну або в список фільмів -->
+    <div class="mt-4">
+        <a href="/compositions" class="btn btn-outline-secondary">До списку фільмів</a>
+    </div>
+</div>
 {% endblock %}

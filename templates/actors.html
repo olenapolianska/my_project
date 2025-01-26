@@ -3,9 +3,11 @@
 {% block content %}
 
 {% for actor in actors %}
-
-    <img src="{{ url_for('static', filename=actor[3]) }}" width="350" height="430">
-    <p>Ім'я: {{ actor[2] }}</p>
-
+    <p>{{ actor[1] }}</p>
+    <img src="{{ url_for('static', filename=actor[3]) }}" width="250" height="380">
+    <p>Повне ім'я: {{ actor[2] }}</p>
+    <p>Дата народження: {{ actor[4] }}</p>
+    <p>Місце народження: {{ actor[5] }}</p>
+    <p>Найпопулярніші фільми і серіали: {{ actor[6] }}</p>
 {% endfor %}
 {% endblock %}
