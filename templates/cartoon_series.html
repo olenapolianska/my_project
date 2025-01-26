@@ -1,17 +1,28 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="container mt-5">
+    <h1 class="text-center my-5 font-weight-bold text-dark">Топ-10 мультсеріалів за рейтингом IMDb</h1>
 
-<h1>Топ-10 мультсеріалів за рейтингом IMDb</h1>
+    <div class="list-group">
+        {% for composition in compositions %}
+        <div class="list-group-item d-flex align-items-start p-4 mb-4 border shadow-sm rounded" style="background-color: #f8f9fa; border-color: #dee2e6;">
+            <div class="d-flex justify-content-start align-items-center">
 
-{% for composition in compositions %}
+                <h3 class="mr-4 text-dark font-weight-bold">{{ loop.index }}.</h3>
 
-<div class="container p-5 my-5 border">
-        <h2>{{ loop.index }}</h2>
-        <img src="{{ url_for('static', filename= composition[1]) }}" class="float-start" width="150" height="230" >
 
-        <h5 class=text-secondary">{{ composition[3] }}</h5>
-        <a href="/composition/{{composition[0]}}">детальніше про мультсеріал</a>
+                <img src="{{ url_for('static', filename= composition[1]) }}" class="img-fluid rounded shadow-sm" alt="{{ composition[2] }}" width="150" height="225">
+
+
+                <div class="ml-4">
+                    <h3 class="text-dark font-weight-bold">{{ composition[2] }}</h3>
+                    <h5 class="text-muted">{{ composition[3] }}</h5>
+                    <a href="/composition/{{composition[0]}}" class="btn btn-outline-dark mt-3 px-4 py-2">Детальніше про мультсеріал</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
     </div>
-{% endfor %}
+</div>
 {% endblock %}

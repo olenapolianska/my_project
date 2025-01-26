@@ -1,25 +1,28 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container">
-    <h1 class="text-center my-4 font-weight-bold">Топ-10 фільмів за рейтингом IMDb</h1>
+<div class="container mt-5">
+    <h1 class="text-center my-5 font-weight-bold text-dark">Топ-10 фільмів за рейтингом IMDb</h1>
 
     <div class="list-group">
         {% for composition in compositions %}
-        <div class="list-group-item d-flex align-items-center p-4 mb-3 border shadow-sm rounded">
-            <h2>{{ loop.index}}</h2>
-            <!-- Зображення фільму -->
-            <img src="{{ url_for('static', filename= composition[1]) }}" class="img-fluid rounded shadow" alt="{{ composition[2] }}" width="150" height="225">
+        <div class="list-group-item d-flex align-items-start p-4 mb-4 border shadow-sm rounded" style="background-color: #f8f9fa; border-color: #dee2e6;">
+            <div class="d-flex justify-content-start align-items-center">
 
-            <!-- Опис фільму -->
-            <div class="ml-4">
-                <h3 class="text-dark font-weight-bold">{{ composition[2] }}</h3>
-                <h5 class="text-muted">{{ composition[3] }}</h5>
-                <p class="text-muted">Рейтинг IMDb: <strong>{{ composition[4] }}</strong></p> <!-- Якщо рейтинг є, додаємо його -->
-                <a href="/composition/{{composition[0]}}" class="btn btn-outline-primary mt-3">Детальніше про фільм</a>
+                <h3 class="mr-4 text-dark font-weight-bold">{{ loop.index }}.</h3>
+
+
+                <img src="{{ url_for('static', filename= composition[1]) }}" class="img-fluid rounded shadow-sm" alt="{{ composition[2] }}" width="150" height="225">
+
+                <div class="ml-4">
+                    <h3 class="text-dark font-weight-bold">{{ composition[2] }}</h3>
+                    <h5 class="text-muted">{{ composition[3] }}</h5>
+                    <a href="/composition/{{composition[0]}}" class="btn btn-outline-dark mt-3 px-4 py-2">Детальніше про фільм</a>
+                </div>
             </div>
         </div>
         {% endfor %}
     </div>
 </div>
 {% endblock %}
+

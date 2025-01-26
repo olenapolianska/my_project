@@ -1,21 +1,66 @@
+
 body {
+    font-family: Arial, sans-serif;
     background-color: #f8f9fa;
-    margin: 0;
-    padding: 0;
 }
+
+
 .navbar {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #343a40;
 }
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.nav-link {
+    font-size: 1.1rem;
+}
+
+
+.container {
+    margin-top: 40px;
+}
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+.card-body {
+    background-color: #ffffff;
+}
+
+
 footer {
     background-color: #343a40;
-    color: white;
-    text-align: center;
-    padding: 15px 0;
+    color: #ffffff;
+    padding: 20px 0;
+    margin-top: 40px;
 }
-footer a {
-    color: #f8d210;
-    text-decoration: none;
-}
-footer a:hover {
-    text-decoration: underline;}
 
+footer p {
+    margin: 0;
+    text-align: center;
+}
+
+.navbar-toggler-icon {
+    background-color: white;
+}
+
+
+@media (max-width: 768px) {
+    .card-img-top {
+        height: 200px;
+        object-fit: cover;
+    }
+}
